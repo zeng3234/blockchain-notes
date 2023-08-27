@@ -1,0 +1,45 @@
+部署
+方式一: 使用foundry, 下载permit2的源码，有对应脚本
+方式二: remix，自行获得源码，推荐flatten, forge flatten src/Permit2.sol > p2.sol
+	remix编译会提示错误Stack too deep. Try compiling with `--via-ir`
+	参考 https://stackoverflow.com/questions/76470827/how-do-i-run-via-ir-in-remix
+		在Advanced Configurations下面，默认是选中Compiler configuration， 往下还有一个配置Use configuration file
+		修改对应参数， 参考foundry配置，viaIR:true, runs:1000000 
+		
+{
+	"language": "Solidity",
+	"settings": {
+		"viaIR": true,
+		"optimizer": {
+			"enabled": true,
+			"runs": 1000000
+		},
+		"outputSelection": {
+			"*": {
+			"": ["ast"],
+			"*": ["abi", "metadata", "devdoc", "userdoc", "storageLayout", "evm.legacyAssembly", "evm.bytecode", "evm.deployedBytecode", "evm.methodIdentifiers", "evm.gasEstimates", "evm.assembly"]
+			}
+		}
+	}
+}
+
+
+
+
+
+
+开源
+viaIR目前浏览器支持程度还不友好，下面链接提供了开源的方式
+https://github.com/foundry-rs/foundry/issues/3507
+
+对应的json文件，也可以在remix中获取到
+编译页面，上面配置via-ir的配置，继续往下， 
+	先选CONTRACT 选中Permit2
+	往下有一个按钮是 Compilation Details,点开，第一个COMPILERINPUT,右边有复制按钮
+
+在浏览器开源代码的时候， 选择 Solidity (Standard-Json-Input)
+
+
+
+
+
